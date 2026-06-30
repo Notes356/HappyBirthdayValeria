@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Vale Lvl 18 ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Space+Grotesk:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variables de Diseño - Paleta Neo-Pastel y Cósmica */
+        :root {
+            --neon-pink: #ff6b8b;
+            --neon-purple: #b686ff;
+            --pastel-mint: #a2ebd0;
+            --soft-gold: #ffe17d;
+            --dark-space: #090611;
+            --card-bg: #130f22;
+            --safe-top: env(safe-area-inset-top, 20px);
+            --safe-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        /* Reset Global Estricto para iOS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        /* Configuración base del Body - Cumpliendo reglas de flujo limpio */
+        body {
+            background-color: var(--dark-space);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 139, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(182, 134, 255, 0.08) 0%, transparent 40%);
+        }
+
+        /* Contenedor Maestro Adaptado al Viewport del iPhone 13 */
+        .app-viewport {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: var(--safe-top) 20px calc(var(--safe-bottom) + 20px) 20px;
+            display: block;
+        }
+
+        /* REGLAS DEL ESCENARIO 1: EL INTERACTOR / CLICKER */
+        .clicker-stage {
+            display: block;
+            opacity: 1;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            padding-top: 15vh;
+        }
+
+        .clicker-stage.hidden {
+            opacity: 0;
+            transform: scale(0.92) translateY(-20px);
+            pointer-events: none;
+            display: none !important;
+        }
+
+        /* Marcador flotante de diseño limpio */
+        .retro-counter {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            display: inline-block;
+            filter: drop-shadow(0 4px 10px rgba(182,134,255,0.2));
+            animation: floatUI 3s ease-in-out infinite alternate;
+        }
+
+        /* El núcleo interactivo - Fusión de fluido moderno con bordes nítidos */
+        .interactive-core-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .interactive-core {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+            border: 6px solid #000000;
+            box-shadow: 
+                0 0 0 4px var(--soft-gold),
+                0 20px 40px rgba(255, 107, 139, 0.3);
+            cursor: pointer;
+            position: relative;
+            transform-origin: center;
+            animation: liquidMorph 4s ease-in-out infinite alternate;
+            transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Efecto feedback al tacto en pantalla */
+        .interactive-core:active {
+            transform: scale(0.88) rotate(-3deg);
+        }
+
+        /* Brillo interno pixel-art moderno */
+        .interactive-core::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 3px solid #000;
+        }
+
+        /* REGLAS DEL ESCENARIO 2: CELEBRACIÓN KINÉTICA */
+        .celebration-stage {
+            display: none;
+            opacity: 0;
+            text-align: center;
+            padding-top: 10vh;
+            transition: opacity 0.8s ease;
+        }
+
+        .celebration-stage.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Texto Kinético Animado por Letras */
+        .kinetic-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2.6rem;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .kinetic-letter {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--neon-pink), var(--soft-gold), var(--pastel-mint));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: letterWave 1.6s ease-in-out infinite, gradientShift 4s ease infinite;
+        }
+
+        /* Generación de retrasos dinámicos para el efecto ola */
+        .kinetic-letter:nth-child(1) { animation-delay: 0.1s; }
+        .kinetic-letter:nth-child(2) { animation-delay: 0.2s; }
+        .kinetic-letter:nth-child(3) { animation-delay: 0.3s; }
+        .kinetic-letter:nth-child(4) { animation-delay: 0.4s; }
+        .kinetic-letter:nth-child(5) { animation-delay: 0.5s; }
+        .kinetic-letter:nth-child(6) { animation-delay: 0.6s; }
+        .kinetic-letter:nth-child(7) { animation-delay: 0.7s; }
+        .kinetic-letter:nth-child(8) { animation-delay: 0.8s; }
+        .kinetic-letter:nth-child(9) { animation-delay: 0.9s; }
+        .kinetic-letter:nth-child(10) { animation-delay: 1.0s; }
+
+        .celebration-subtitle {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.85rem;
+            color: var(--pastel-mint);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0px #000;
+            opacity: 0;
+            animation: fadeInSimple 1s forwards 0.8s;
+        }
+
+        /* Zona de activación del sobre diferida (Protección de saltos) */
+        .trigger-gate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: lockGateReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.8s;
+            margin-top: 30px;
+        }
+
+        .modern-envelope-btn {
+            background-color: var(--card-bg);
+            border: 4px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 20px 30px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+
+        .modern-envelope-btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-arrow {
+            font-size: 1.5rem;
+            animation: arrowBounce 0.6s infinite alternate;
+            color: var(--soft-gold);
+        }
+
+        .envelope-graphic {
+            width: 50px;
+            height: 32px;
+            border: 3px solid #fff;
+            position: relative;
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .envelope-graphic::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 14px;
+            border-bottom: 3px solid #fff;
+            background-color: var(--card-bg);
+        }
+
+        .btn-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        /* REGLAS DEL ESCENARIO 3: LA CARTA SUPREMA */
+        .card-stage {
+            display: none;
+            opacity: 0;
+            max-width: 580px;
+            margin: 20px auto;
+            transition: opacity 0.8s ease;
+        }
+
+        .card-stage.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Estructura del contenedor limpio para exportación impecable */
+        .sheet-container {
+            background-color: #ffffff;
+            color: #1a1625;
+            border: 6px solid #000000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            padding: 45px 30px;
+            position: relative;
+            border-radius: 2px;
+        }
+
+        /* Decoración de borde superior moderno pixel-art fluido */
+        .sheet-decorator {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--neon-pink) 25%, var(--neon-purple) 25%, var(--neon-purple) 50%, var(--pastel-mint) 50%, var(--pastel-mint) 75%, var(--soft-gold) 75%);
+            background-size: 40px 10px;
+        }
+
+        .sheet-header {
+            text-align: center;
+            margin-bottom: 35px;
+            margin-top: 10px;
+        }
+
+        .sheet-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #130f22;
+            letter-spacing: -0.5px;
+        }
+
+        .sheet-header .badge {
+            display: inline-block;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            background-color: #130f22;
+            color: var(--soft-gold);
+            padding: 5px 12px;
+            margin-top: 10px;
+            border: 2px solid #000;
+        }
+
+        /* Editor de Texto Fluidizado */
+        .sheet-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-weight: 400;
+            text-align: justify;
+            outline: none;
+            padding: 10px;
+            border: 2px dashed transparent;
+            min-height: 200px;
+            white-space: pre-wrap;
+            transition: background 0.3s;
+        }
+
+        .sheet-body:hover, .sheet-body:focus {
+            background-color: #f7f4fd;
+            border-color: var(--neon-purple);
+        }
+
+        .sheet-signature {
+            margin-top: 40px;
+            text-align: right;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #130f22;
+            outline: none;
+            padding: 5px;
+        }
+
+        /* Barra de Control de PDF */
+        .control-dock {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .pdf-action-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            background-color: var(--neon-pink);
+            color: #fff;
+            border: 4px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            padding: 15px 35px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .pdf-action-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        /* Partículas físicas fluidas */
+        .flying-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+        }
+
+        /* ANIMACIONES CSS AVANZADAS */
+        @keyframes liquidMorph {
+            0% { border-radius: 4px; transform: scale(1) rotate(0deg); }
+            33% { border-radius: 12px 4px 16px 8px; }
+            66% { border-radius: 6px 14px 4px 18px; transform: scale(1.03) rotate(2deg); }
+            100% { border-radius: 4px; transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes floatUI {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        @keyframes letterWave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes arrowBounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-6px); }
+        }
+
+        @keyframes lockGateReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInSimple {
+            to { opacity: 1; }
+        }
+
+        /* Ajustes de Impresión Estrictos */
+        @media print {
+            body { background: #ffffff !important; }
+            .app-viewport { padding: 0; }
+            .sheet-container { box-shadow: none !important; border: 4px solid #000 !important; }
+            .control-dock, .clicker-stage, .celebration-stage { display: none !important; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="app-viewport">
+
+        <div class="clicker-stage" id="stage-1">
+            <div>
+                <div class="retro-counter" id="visual-counter">00 / 18</div>
+            </div>
+            <div class="interactive-core-wrapper">
+                <div class="interactive-core" id="core-button"></div>
+            </div>
+        </div>
+
+        <div class="celebration-stage" id="stage-2">
+            <div class="kinetic-title" id="text-container">
+                </div>
+            <div class="celebration-subtitle">LEVEL 18 UNLOCKED ✨</div>
+            
+            <div class="trigger-gate">
+                <div class="modern-envelope-btn" onclick="navigateToLetter()">
+                    <div class="btn-arrow">👇</div>
+                    <div class="envelope-graphic"></div>
+                    <div class="btn-label">ABRIR TU MENSAJE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-stage" id="stage-3">
+            <div class="sheet-container" id="pdf-area">
+                <div class="sheet-decorator"></div>
+                
+                <div class="sheet-header">
+                    <h3>¡Feliz Cumpleaños!</h3>
+                    <div class="badge">VALE ♡ DATA_LVL_18</div>
+                </div>
+                
+                <div class="sheet-body" contenteditable="true" id="editor-body">
+¡Hola Vale! 🦄
+
+¡Feliz cumpleaños número 18! Llegaste al gran nivel de la mayoría de edad y este rinconcito digital fue programado pura y exclusivamente para vos.
+
+(Hacé un clic o tocá acá adentro desde tu pantalla para borrar este borrador. Escribí tu mensaje definitivo, corregí los detalles que hagan falta y mirá cómo interactúa todo de forma fluida antes de exportarlo).
+
+¡Que tengas un año alucinante!
+                </div>
+                
+                <div class="sheet-signature" contenteditable="true" id="editor-sig">
+                    Con mucho amor, [Tu Nombre]
+                </div>
+            </div>
+
+            <div class="control-dock">
+                <button class="pdf-action-btn" onclick="generateCleanPDF()">
+                    💾 EXPORTAR CARTA EN PDF
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Variables de estado del núcleo
+        let targetClicks = 18;
+        let currentClicks = 0;
+        let isTransitioning = false; // Flag maestro anti-doble clic rápido
+
+        const coreButton = document.getElementById('core-button');
+        const visualCounter = document.getElementById('visual-counter');
+
+        // Escuchador de eventos optimizado para respuesta táctil inmediata en iOS
+        coreButton.addEventListener('pointerdown', function(e) {
+            // Si el proceso de bloqueo está activo, aborta por completo cualquier acción
+            if (isTransitioning) return;
+
+            currentClicks++;
+            executeTouchFeedback(e);
+
+            if (currentClicks <= targetClicks) {
+                // Formateo de cadena minimalista estilo tablero 01, 02...
+                visualCounter.innerText = (currentClicks < 10 ? '0' : '') + currentClicks + ' / 18';
+            }
+
+            if (currentClicks === targetClicks) {
+                isTransitioning = true; // Bloqueo de seguridad inmediato
+                triggerCelebrationSequence();
+            }
+        });
+
+        // Motor de partículas físicas integradas basadas en el punto exacto del toque
+        function executeTouchFeedback(e) {
+            const colors = ['#ff6b8b', '#b686ff', '#a2ebd0', '#ffe17d'];
+            const rect = coreButton.getBoundingClientRect();
+            
+            // Determina coordenadas del toque o usa el centro como contingencia
+            const originX = e ? e.clientX : rect.left + rect.width / 2;
+            const originY = e ? e.clientY : rect.top + rect.height / 2;
+
+            for(let i=0; i < 6; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('flying-particle');
+                
+                // Dimensión de bloques aleatorios consistentes
+                const size = Math.floor(Math.random() * 8) + 8;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.left = originX + 'px';
+                particle.style.top = originY + 'px';
+
+                document.body.appendChild(particle);
+
+                // Vectores de proyección angular
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 4 + 3;
+                let vx = Math.cos(angle) * velocity;
+                let vy = Math.sin(angle) * velocity - 2; // Ligero sesgo hacia arriba
+                let px = originX;
+                let py = originY;
+                let opacity = 1;
+
+                // Loop de animación atómico por partícula
+                function updateFrame() {
+                    vy += 0.18; // Gravedad artificial
+                    px += vx;
+                    py += vy;
+                    opacity -= 0.025;
+
+                    particle.style.left = px + 'px';
+                    particle.style.top = py + 'px';
+                    particle.style.opacity = opacity;
+
+                    if (opacity > 0) {
+                        requestAnimationFrame(updateFrame);
+                    } else {
+                        particle.remove();
+                    }
+                }
+                requestAnimationFrame(updateFrame);
+            }
+        }
+
+        // Secuencia de transición controlada hacia la fase festiva
+        function triggerCelebrationSequence() {
+            setTimeout(() => {
+                document.getElementById('stage-1').classList.add('hidden');
+                
+                // Inyectar y segmentar el texto cinético para las animaciones CSS individuales
+                const textContainer = document.getElementById('text-container');
+                const rawText = "HAPPY BIRTHDAY VALE";
+                textContainer.innerHTML = '';
+                
+                rawText.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    span.classList.add('kinetic-letter');
+                    // Mantener espacios integrales en el flujo de texto
+                    span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                    textContainer.appendChild(span);
+                });
+
+                document.getElementById('stage-2').classList.add('visible');
+                playSynthesizerLoop();
+                startContinuousConfetti();
+            }, 300);
+        }
+
+        // Cascada infinita de confeti flotante en bucle controlado
+        function startContinuousConfetti() {
+            if (!isTransitioning) return;
+            const pastelColors = ['#ff6b8b', '#b686ff', '#a2ebd0', '#ffe17d'];
+            
+            setInterval(() => {
+                if(document.getElementById('stage-2').style.display === 'none') return;
+                
+                const drop = document.createElement('div');
+                drop.classList.add('flying-particle');
+                const size = Math.floor(Math.random() * 6) + 8;
+                
+                drop.style.width = size + 'px';
+                drop.style.height = size + 'px';
+                drop.style.backgroundColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.top = '-20px';
+                drop.style.opacity = '1';
+                
+                document.body.appendChild(drop);
+
+                let currentY = -20;
+                let currentX = parseFloat(drop.style.left);
+                const drift = Math.random() * 1 - 0.5;
+
+                function fall() {
+                    currentY += 2.5;
+                    currentX += drift;
+                    drop.style.top = currentY + 'px';
+                    drop.style.transform = `translateX(${drift}px) rotate(${currentY}deg)`;
+                    
+                    if (currentY < window.innerHeight) {
+                        requestAnimationFrame(fall);
+                    } else {
+                        drop.remove();
+                    }
+                }
+                requestAnimationFrame(fall);
+            }, 120);
+        }
+
+        // Sintetizador Web Audio API nativo - Melodía retro optimizada
+        function playSynthesizerLoop() {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            const audioCtx = new AudioContext();
+            
+            const melody = [
+                {f: 261.63, d: 0.3}, {f: 261.63, d: 0.1}, {f: 293.66, d: 0.4}, {f: 261.63, d: 0.4}, {f: 349.23, d: 0.4}, {f: 329.63, d: 0.8},
+                {f: 261.63, d: 0.3}, {f: 261.63, d: 0.1}, {f: 293.66, d: 0.4}, {f: 261.63, d: 0.4}, {f: 392.00, d: 0.4}, {f: 349.23, d: 0.8}
+            ];
+            
+            let timeline = audioCtx.currentTime;
+            melody.forEach(note => {
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = 'triangle'; // Onda suave y fluida, no chirriante
+                oscillator.frequency.setValueAtTime(note.f, timeline);
+                
+                gainNode.gain.setValueAtTime(0.06, timeline);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, timeline + note.d - 0.02);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start(timeline);
+                oscillator.stop(timeline + note.d);
+                timeline += note.d;
+            });
+        }
+
+        function navigateToLetter() {
+            document.getElementById('stage-2').style.display = 'none';
+            const stage3 = document.getElementById('stage-3');
+            stage3.classList.add('visible');
+            stage3.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Motor de exportación limpia A4 PDF sin desborde perimetral
+        function generateCleanPDF() {
+            const printElement = document.getElementById('pdf-area');
+            const config = {
+                margin:       15,
+                filename:     'Carta_Especial_Vale18.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 3, letterRendering: true, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(config).from(printElement).save();
+        }
+    </script>
+</body>
+</html>

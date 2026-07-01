@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>¡Felices 18!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --vivid-pink: #FF00FF; 
+            --vivid-cyan: #00FFFF; 
+            --vivid-yellow: #FFFF00; 
+            --bg-dark: #0f0c29; 
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background: var(--bg-dark);
+            width: 100vw; height: 100vh; overflow: hidden;
+            position: relative;
+        }
+
+        /* Capa de Interacción Ajustada */
+        #interaction-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            /* Más opaca para mayor impacto visual */
+            background: rgba(15, 12, 41, 0.98); 
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease;
+        }
+
+        /* Animación de pulso sutil */
+        .pulse-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { transform: scale(1.2); opacity: 0; box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+            100% { transform: scale(0.8); opacity: 0; }
+        }
+
+        #bg-image {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://raw.githubusercontent.com/Notes356/HappyBirthdayValeria/562fa8c09ba5fda8d2ef9e6b07fe9d51eba685e8/Picsart_26-06-30_20-06-18-564.png');
+            background-size: cover; background-position: center;
+            filter: brightness(1.2) contrast(1.1) saturate(1.2); 
+            z-index: 0;
+            animation: rhythm 4s infinite ease-in-out;
+        }
+
+        @keyframes rhythm {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.02) rotate(-0.5deg); }
+        }
+
+        .vignette-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%);
+            z-index: 2; pointer-events: none;
+        }
+
+        .lighting-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 255, 0, 0.2) 0%, rgba(15, 12, 41, 0.5) 100%);
+            z-index: 1; pointer-events: none;
+            animation: pulseLight 4s infinite ease-in-out;
+        }
+
+        @keyframes pulseLight { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.9; } }
+
+        .celebration-hero { 
+            position: absolute; bottom: 8vh; left: 0; right: 0;
+            z-index: 3; text-align: center;
+        }
+
+        #text-container {
+            font-family: 'Sigmar', cursive;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .char {
+            display: inline-block;
+            font-size: 4.5rem; 
+            -webkit-text-stroke: 2px black;
+            text-shadow: 3px 3px 0px black;
+            animation: 
+                fadeInUp 1s ease-out forwards, 
+                zoomBip 2s ease-in-out infinite 1s, 
+                colorSwap 3s linear infinite 1s;
+        }
+
+        .age-highlight { font-size: 8rem; margin-top: -20px; font-weight: bold; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomBip {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes colorSwap {
+            0%, 100% { color: var(--vivid-pink); }
+            33% { color: var(--vivid-cyan); }
+            66% { color: var(--vivid-yellow); }
+        }
+
+        #nav-button {
+            position: absolute; top: 15vh; left: 50%; transform: translateX(-50%);
+            z-index: 10;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            border-radius: 20px;
+            padding: 15px;
+            font-size: 2.5rem;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        #nav-button:hover { transform: translateX(-50%) scale(1.1); }
+
+        #confettiCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://github.com/Notes356/HappyBirthdayValeria/raw/3598e596c0909e545e906865fabae47db973e1d5/nastelbom-happy-birthday-471481.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Overlay modificado -->
+    <div id="interaction-overlay">
+        <div class="pulse-icon"></div>
+    </div>
+
+    <canvas id="confettiCanvas"></canvas>
+    <div id="bg-image"></div>
+    <div class="lighting-overlay"></div>
+    <div class="vignette-overlay"></div>
+
+    <div id="nav-button" onclick="window.location.href='carta.html'">
+        ✉️
+    </div>
+
+    <div class="celebration-hero">
+        <div id="text-container"></div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('interaction-overlay');
+        const music = document.getElementById('bgMusic');
+
+        overlay.addEventListener('click', () => {
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 800);
+            music.play();
+            createBurst();
+        });
+
+        const textContainer = document.getElementById('text-container');
+        const lines = ["FELICES", "18"];
+        let charIndex = 0;
+        
+        lines.forEach((line) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.style.display = "flex";
+            lineDiv.style.flexDirection = "row";
+            
+            line.split('').forEach((char) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.className = 'char';
+                if (line === "18") span.classList.add('age-highlight');
+                span.style.animationDelay = `${charIndex * 0.1}s, 1s, 1s`; 
+                lineDiv.appendChild(span);
+                charIndex++;
+            });
+            textContainer.appendChild(lineDiv);
+        });
+
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.onresize = resize;
+        resize();
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 8 + 3;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.r = Math.random() * 3 + 2;
+                this.color = ['#FF00FF', '#00FFFF', '#FFFF00', '#ffffff'][Math.floor(Math.random() * 4)];
+                this.alpha = 1; this.friction = 0.94; this.gravity = 0.15;
+            }
+            update() {
+                this.vx *= this.friction; this.vy *= this.friction;
+                this.vy += this.gravity; this.x += this.vx; this.y += this.vy;
+                this.alpha -= 0.015;
+            }
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.fillStyle = this.color;
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createBurst() {
+            const origins = [{x: canvas.width * 0.2, y: canvas.height * 0.2}, {x: canvas.width * 0.8, y: canvas.height * 0.2}, {x: canvas.width * 0.5, y: canvas.height * 0.1}];
+            const pos = origins[Math.floor(Math.random() * origins.length)];
+            for(let i=0; i<50; i++) particles.push(new Particle(pos.x, pos.y));
+        }
+
+        setInterval(() => {
+            if (!music.paused) createBurst();
+        }, 1200);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.update(); p.draw();
+                if (p.alpha <= 0) particles.splice(index, 1);
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
